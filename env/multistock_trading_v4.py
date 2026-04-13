@@ -109,15 +109,18 @@ class MultiStockTrading(gym.Env):
         # Set the turbulence index
         self.turbulence_index = turbulence_index
 
+        # Derive number of stocks from data (supports universes smaller than 30)
+        self.STOCK_DIM = len(self.market_data.columns.get_level_values(1).unique())
+
         # Definition the action space (n Stocks, and for stock a value between [-1,1])
-        self.action_space = spaces.Box(low = -1, high = 1,shape = (self.STOCK_DIM,),seed=seed) 
-        
+        self.action_space = spaces.Box(low = -1, high = 1,shape = (self.STOCK_DIM,),seed=seed)
+
 
         # Get unique columns (Adj Close, MACD, ...)
         num_unique_cols  = len(
             self.market_data.columns.get_level_values(0).unique()
-            ) 
-        
+            )
+
         num_features = num_unique_cols
         
         # Definition of observation space (add 1 to the general num_features, since the 
