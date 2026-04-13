@@ -123,6 +123,12 @@ training_data = pd.read_csv(
 tickers = testing_data.columns.get_level_values(1).unique().tolist()
 print(f"Tickers ({len(tickers)}): {tickers}")
 
+# Align lengths — turbulence index may have one fewer row than market data
+min_len = min(len(testing_data), len(turbulence_testing))
+testing_data      = testing_data.iloc[:min_len]
+turbulence_testing = turbulence_testing.iloc[:min_len]
+print(f"Testing rows after alignment: {min_len}")
+
 # ---------------------------------------------------------------------------
 # Load benchmark data (DJI, S&P 500) — reuse files from evaluate_agents/
 # ---------------------------------------------------------------------------
