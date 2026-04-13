@@ -1,0 +1,6 @@
+The data for used during the sentiment analysis can be found in kaggle: 
+https://www.kaggle.com/datasets/miguelaenlle/massive-stock-news-analysis-db-for-nlpbacktests/data
+
+Because the files were to large, they could not be uploaded to GitHub. Note that
+once downloading the data, the data should be stored in the current folder 'data' 
+since this data will be read during the analysis.

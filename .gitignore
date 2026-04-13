@@ -1,0 +1,32 @@
+
+# Trash folder (files to be deleted)
+Trash/
+
+# pycache
+__pycache__/
+
+# paper
+paper/
+
+# Leere Felder die beim Pushen des Codes von Apple erzeugt werden
+.DS_Store
+
+# Don't push the csv files that can be found in kaggle (to big to be uploaded): 
+# (https://www.kaggle.com/datasets/miguelaenlle/massive-stock-news-analysis-db-for-nlpbacktests/data) 
+analyst_ratings_processed.csv 
+raw_analyst_ratings.csv 
+raw_partner_headlines.csv
+
+# Virtual and Conda environment
+.venv_AADRL
+.conda_AADRL
+.venv
+
+# Test files
+test.ipynb
+test.py
+test copy.py
+
+# Trained model files
+train_agents/training_eval/
+train_agents/training_eval_no_nflx/
