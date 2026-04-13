@@ -139,10 +139,11 @@ for seed in RANDOM_SEEDS:
             'Trading-v4',
             n_envs=NUMBER_ENVS,
             env_kwargs={
-                'market_data':       training_data,
-                'turbulence_index':  turbulence_training,
+                'market_data':         training_data,
+                'turbulence_index':    turbulence_training,
                 'consider_sentiments': consider_sentiment,
-                'n_step_sharpe':     consider_sharpe,
+                'n_step_sharpe':       consider_sharpe,
+                'consider_indicators': [],
             }
         )
 
@@ -152,6 +153,7 @@ for seed in RANDOM_SEEDS:
             turbulence_index=turbulence_validation,
             consider_sentiments=consider_sentiment,
             n_step_sharpe=consider_sharpe,
+            consider_indicators=[],
         )
 
         if use_lstm:
