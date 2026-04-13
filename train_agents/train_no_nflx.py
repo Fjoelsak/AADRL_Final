@@ -187,7 +187,7 @@ for seed in RANDOM_SEEDS:
         model.learn(
             total_timesteps=TIMESTEPS,
             callback=callback,
-            progress_bar=True
+            progress_bar=False
         )
 
         print(f"Finished {agent_label}. Best model saved to {save_path}/")
