@@ -21,9 +21,9 @@ import matplotlib
 matplotlib.use('Agg')   # headless rendering for server execution
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import seaborn as sns
-import colorcet as cc
+import matplotlib.cm as cm
 import empyrical
+from scipy.stats import gaussian_kde
 import gymnasium as gym
 from collections import defaultdict
 from gymnasium.envs.registration import register
@@ -207,7 +207,6 @@ print(stats_df.to_string())
 # ---------------------------------------------------------------------------
 print("\n--- Plotting cumulative returns ---")
 fig, ax = plt.subplots(figsize=(7.0, 4))
-sns.set_theme()
 
 for agent_num in range(NUM_AGENTS):
     ax.plot(pd.to_datetime(testing_data.index),
@@ -290,7 +289,7 @@ for i, df in enumerate(mean_shares_dfs):
 # Portfolio allocation plot (per stock, weighted)
 fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(7, 5), sharex=True, sharey=True)
 col, row = 0, 0
-palette = sns.color_palette(cc.glasbey_light, n_colors=len(tickers) + 1)
+palette = [cm.tab20(i % 20) for i in range(len(tickers) + 1)]
 
 for i in range(NUM_AGENTS):
     weighted_pct[i].plot(
@@ -356,10 +355,14 @@ print(f"  Saved: {ks_path}")
 # 6. Return distribution plot: Agent 4 vs. dominant stock
 # ---------------------------------------------------------------------------
 fig, ax = plt.subplots(figsize=(5, 4))
-sns.histplot(daily_returns_dominant, kde=True, stat='density',
-             label=dominant_stock, color='red', ax=ax, alpha=0.4)
-sns.histplot(daily_returns_agent4,   kde=True, stat='density',
-             label='Agent 4',        color='cornflowerblue', ax=ax, alpha=0.4)
+for returns, label, color in [
+    (daily_returns_dominant, dominant_stock,  'red'),
+    (daily_returns_agent4,   'Agent 4',       'cornflowerblue'),
+]:
+    ax.hist(returns, bins=50, density=True, alpha=0.4, color=color, label=label)
+    x = np.linspace(returns.min(), returns.max(), 300)
+    kde = gaussian_kde(returns)
+    ax.plot(x, kde(x), color=color)
 ax.set_xlabel('Daily return')
 ax.set_xlim(-0.05, 0.05)
 ax.set_ylabel('Density')
