@@ -309,7 +309,9 @@ for i in range(NUM_AGENTS):
                             bbox_to_anchor=(1, -1.6),
                             ncol=len(weighted_pct[i].columns) // 3)
     else:
-        ax[row][col].get_legend().remove()
+        legend = ax[row][col].get_legend()
+        if legend is not None:
+            legend.remove()
 
     ax[row][col].set_title(f'Agent {i + 1}')
     ax[row][col].tick_params(axis='x', labelsize=9, rotation=45)
