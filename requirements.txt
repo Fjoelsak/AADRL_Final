@@ -3,3 +3,4 @@ pandas==2.2.0
 stable_baselines3==2.4.1
 sb3_contrib==2.4.0
 optuna
+empyrical
