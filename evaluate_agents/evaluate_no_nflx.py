@@ -275,7 +275,7 @@ for seed_idx, seed in enumerate(SEEDS):
 # Mean over seeds and runs
 mean_shares = shares_over_seeds.mean(axis=2).mean(axis=1)
 mean_cash   = cash_over_seeds.mean(axis=2).mean(axis=1)
-prices_arr  = prices_over_seeds[0, 0]    # prices are deterministic
+prices_arr  = prices_over_seeds[0, 0, 0]  # prices are deterministic — shape (T, n_tickers)
 
 mean_shares_dfs = [
     pd.DataFrame(mean_shares[i], columns=tickers,
