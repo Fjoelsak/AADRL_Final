@@ -1,0 +1,2 @@
+,batch_size,n_steps,gamma,learning_rate,clip_range,n_epochs,gae_lambda,max_grad_norm,net_arch,lstm_hidden_size,n_step_sharpe
+0,128,128,0.999,0.0005,0.2,5,0.98,0.3,small,128,299

@@ -33,7 +33,7 @@ from train_agents.eval_callback import EvaluationCallback
 # ---------------------------------------------------------------------------
 DATA_DIR         = os.path.join(REPO_ROOT, 'data', 'no_nflx')
 LOG_DIR          = os.path.join(REPO_ROOT, 'train_agents', 'training_eval_no_nflx')
-BEST_PARAMS_CSV  = os.path.join(REPO_ROOT, 'train_agents', 'training_eval', 'best_params_hyperparameteropt.csv')
+BEST_PARAMS_CSV  = os.path.join(REPO_ROOT, 'train_agents', 'best_params_hyperparameteropt.csv')
 
 NUMBER_ENVS      = 4
 N_STEP_VAL       = 2_500
