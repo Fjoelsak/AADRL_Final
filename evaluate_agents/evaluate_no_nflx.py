@@ -153,6 +153,7 @@ for idx_seed, seed in enumerate(SEEDS):
             turbulence_index=turbulence_testing,
             consider_sentiments=consider_sentiment,
             n_step_sharpe=consider_sharpe,
+            consider_indicators=[],
         )
 
         if use_lstm:
@@ -253,6 +254,7 @@ for seed_idx, seed in enumerate(SEEDS):
             turbulence_index=turbulence_testing,
             consider_sentiments=consider_sentiment,
             n_step_sharpe=consider_sharpe,
+            consider_indicators=[],
         )
         if use_lstm:
             agent = RecurrentPPO.load(model_path)
